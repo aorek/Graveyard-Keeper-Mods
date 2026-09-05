@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.3.0 | 5 September 2026
+
+- Reminders now wait until morning instead of turning up in the middle of the night
+- Reminders now wait for the sleep screen to clear before appearing
+- Added a reminder for when crops in your garden beds are ready, either straight away or saved for the next morning
+- The morning reminder now mentions when someone is waiting at the confessional
+
 ## 2.2.14 | 19 May 2026
 
 - Fixed a launch crash on the 32-bit GOG build with certain mod combinations
