@@ -1,5 +1,6 @@
 namespace RestInPatches.Patches;
 
+[Harmony]
 public static class FootprintPatches
 {
     [HarmonyPostfix]
@@ -20,7 +21,6 @@ public static class FootprintPatches
         }
         else
         {
-            oldest._degrading = false;
             oldest.gameObject.AddComponent<DestroyWhenInvisible>();
         }
     }

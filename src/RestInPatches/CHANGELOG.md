@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.6 | 5 September 2026
+
+- Fixed the Max Footprints setting having no effect
+- Footprints now fade away instead of vanishing on the spot
+
 ## 0.1.5 | 20 June 2026
 
 - Added an option to turn off player movement smoothing
