@@ -6,6 +6,7 @@
 - Reminders now wait for the sleep screen to clear before appearing
 - Added a reminder for when crops in your garden beds are ready, either straight away or saved for the next morning
 - The morning reminder now mentions when someone is waiting at the confessional
+- Updated the Korean and Simplified Chinese translations
 
 ## 2.2.14 | 19 May 2026
 
