@@ -2,7 +2,7 @@
 
 ## 2.2.1 | 7 September 2026
 
-- Auto Select Highest Quality Recipe works again on quality recipes that craft one at a time (beer, mead, grape juice, wine, oven meals)
+- Fixed Auto Select Highest Quality Recipe having no effect on quality recipes such as beer, mead, grape juice, wine and oven meals
 
 ## 2.2.0 | 18 July 2026
 
