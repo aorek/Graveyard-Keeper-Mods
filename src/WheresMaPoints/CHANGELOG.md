@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.7 | 7 September 2026
+
+- Tech and XP orbs left lying around from before you installed the mod now go straight into your totals when you load a save
+
 ## 0.3.6 | 19 May 2026
 
 - Fixed a launch crash on the 32-bit GOG build with certain mod combinations
