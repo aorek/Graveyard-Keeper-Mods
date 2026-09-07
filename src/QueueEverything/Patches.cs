@@ -124,12 +124,13 @@ public static class Patches
             return;
         }
 
+        // Single-craft-only recipes still get their ingredient tier picked below,
+        // they just never get an amount above 1.
         var canCraftMultiple = __instance.craft_definition.CanCraftMultiple();
         if (!canCraftMultiple)
         {
-            if (Plugin.DebugEnabled) Plugin.WriteLog($"[Redraw] {__instance.craft_definition.id}: skip (CanCraftMultiple=false) → _amount=1");
+            if (Plugin.DebugEnabled) Plugin.WriteLog($"[Redraw] {__instance.craft_definition.id}: CanCraftMultiple=false → _amount=1");
             __instance._amount = 1;
-            return;
         }
 
         if (Plugin.AlreadyRun)
@@ -150,6 +151,8 @@ public static class Patches
             : GUIElements.me.craft.multi_inventory;
 
         var craftInfo = CraftMaxCalculator.Calculate(__instance, multiInventory, Plugin.AutoSelectHighestQualRecipe.Value);
+
+        if (!canCraftMultiple) return;
 
         if (Plugin.AutoMaxMultiQualCrafts.Value && craftInfo.IsMultiQualCraft)
         {

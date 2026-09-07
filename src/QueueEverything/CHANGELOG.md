@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.1 | 7 September 2026
+
+- Auto Select Highest Quality Recipe works again on quality recipes that craft one at a time (beer, mead, grape juice, wine, oven meals)
+
 ## 2.2.0 | 18 July 2026
 
 - Fixed the +1 / -1 arrows in the expanded craft view changing the amount by two per click
