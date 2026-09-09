@@ -65,7 +65,7 @@ public class Plugin : BaseUnityPlugin
         "steep_yellow_blockage_R_o", "steep_marble", "steep_marble_2", "steep_stone",
         "garden_of_stones_place", "lantern_place",
         "crafting_skull", "crafting_skull_2",
-        "soul_workbench", "soul_container_place_2", "soul_container_2_place_2", "soul_container_3_place_2",
+        "soul_container_place_2", "soul_container_2_place_2", "soul_container_3_place_2",
         "test_obj_2"
     ];
 
