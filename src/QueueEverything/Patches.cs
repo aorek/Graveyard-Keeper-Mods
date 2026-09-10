@@ -85,23 +85,10 @@ public static class Patches
     [HarmonyPostfix, HarmonyPatch(typeof(MainMenuGUI), nameof(MainMenuGUI.Open))]
     public static void MainMenuGUI_Open()
     {
-        Plugin.FasterCraftEnabled = false;
-        Plugin.FasterCraftReloaded = false;
-        Plugin.ExhaustlessEnabled = false;
-
-        Plugin.FasterCraftReloaded = Harmony.HasAnyPatches("p1xel8ted.gyk.fastercraftreloaded");
-        Plugin.ExhaustlessEnabled = Harmony.HasAnyPatches("p1xel8ted.gyk.exhaust-less");
-
-        if (Plugin.FasterCraftReloaded)
+        if (Plugin.DebugEnabled)
         {
-            Plugin.TimeAdjustment = Plugin.FcTimeAdjustment.Value;
-            Plugin.FasterCraftEnabled = true;
-            if (Plugin.DebugEnabled) Plugin.WriteLog($"FasterCraft Reloaded! detected, using its config.");
-        }
-
-        if (Plugin.ExhaustlessEnabled)
-        {
-            if (Plugin.DebugEnabled) Plugin.WriteLog($"Exhaust-less! detected, using its config.");
+            Plugin.WriteLog($"FasterCraft Reloaded! present: {ModCompat.IsPresent(ModCompat.FasterCraftGuid)}");
+            Plugin.WriteLog($"Exhaust-less! present: {ModCompat.IsPresent(ModCompat.ExhaustlessGuid)}");
         }
 
         // Clear per-save state so loading a different save doesn't see the previous save's WGOs.
@@ -615,15 +602,15 @@ public static class CraftDefinitionPatches
 
             if (GlobalCraftControlGUI.is_global_control_active)
             {
-                var cost = Plugin.ExhaustlessEnabled ? Mathf.CeilToInt(num * multiplier / 2f) : num * multiplier;
-                var hasEnough = MainGame.me.player.gratitude_points >= (__instance.gratitude_points_craft_cost?.EvaluateFloat(MainGame.me.player) ?? 0f);
+                var cost = Mathf.CeilToInt(num * multiplier * ModCompat.GratitudeFactor());
+                var hasEnough = MainGame.me.player.gratitude_points >= cost;
                 text += hasEnough
                     ? $"[c](gratitude_points)[/c]{cost}"
                     : $"(gratitude_points)[c][ff1111]{cost}[/c]";
             }
             else
             {
-                var cost = Plugin.ExhaustlessEnabled ? Mathf.CeilToInt(num / 2f) * multiplier : Mathf.CeilToInt(num * multiplier);
+                var cost = Mathf.CeilToInt(num * ModCompat.EnergyFactor()) * multiplier;
                 text += $"[c](en)[/c]{cost}";
             }
         }
@@ -635,8 +622,7 @@ public static class CraftDefinitionPatches
 
             if (craftTime != 0)
             {
-                if (Plugin.FasterCraftEnabled)
-                    craftTime = Plugin.TimeAdjustment < 0 ? craftTime * Plugin.TimeAdjustment : craftTime / Plugin.TimeAdjustment;
+                craftTime /= ModCompat.CraftSpeedMultiplier();
 
                 craftTime = Mathf.CeilToInt(craftTime);
                 if (craftTime > 0) craftTime *= multiplier;
@@ -795,12 +781,7 @@ public static class CraftItemGUIPatches
 
     private static void ApplyFasterCraft(ref float time)
     {
-        if (!Plugin.FasterCraftEnabled) return;
-
-        if (Plugin.TimeAdjustment < 0)
-            time /= Plugin.TimeAdjustment;
-        else
-            time *= Plugin.TimeAdjustment;
+        time /= ModCompat.CraftSpeedMultiplier();
     }
 
     // Works out the organ run before the row draws, so the shard and energy figures cover every
