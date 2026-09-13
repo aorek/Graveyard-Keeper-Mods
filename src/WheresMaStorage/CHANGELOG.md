@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.2.1 | 18 July 2026
+## 2.2.1 | 13 September 2026
 
 - Equipped tools show again when choosing an item at the grindstone, research table and similar menus
 - The equipped-tools row in those menus is now labelled "Tools" instead of showing as the player row

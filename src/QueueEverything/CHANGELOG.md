@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.2.1 | 10 September 2026
+## 2.2.1 | 13 September 2026
 
 - Fixed Auto Select Highest Quality Recipe having no effect on quality recipes such as beer, mead, grape juice, wine and oven meals
 - The amount arrows now work at the organ workbench, raising several levels in one craft for the combined cost (thanks aorek)

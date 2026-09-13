@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.7 | 7 September 2026
+## 0.3.7 | 13 September 2026
 
 - Orbs still lying on the ground are now added to your totals
 

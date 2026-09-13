@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.3.0 | 5 September 2026
+## 2.3.0 | 13 September 2026
 
 - Reminders now wait until morning instead of turning up in the middle of the night
 - Reminders now wait for the sleep screen to clear before appearing
