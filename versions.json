@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "generated_at": "2026-07-18T05:09:31Z",
-  "generated_by": "update-manifest.yml@07121771",
+  "generated_at": "2026-09-13T16:25:16Z",
+  "generated_by": "update-manifest.yml@1cfa392d",
   "game_domain": "graveyardkeeper",
   "mods": [
     {
@@ -188,20 +188,20 @@
       "plugin_guid": "p1xel8ted.gyk.keeperscandles",
       "nexus_mod_id": 87,
       "nexus_url": "https://www.nexusmods.com/graveyardkeeper/mods/87",
-      "latest_version": "0.2.0",
-      "latest_file_id": 1232,
+      "latest_version": "0.2.1",
+      "latest_file_id": 1277,
       "latest_file_name": "Keepers Candles",
-      "uploaded_unix": 1781931600,
+      "uploaded_unix": 1789284470,
       "status": "ok"
     },
     {
       "plugin_guid": "p1xel8ted.gyk.longerdays",
       "nexus_mod_id": 53,
       "nexus_url": "https://www.nexusmods.com/graveyardkeeper/mods/53",
-      "latest_version": "1.7.0",
-      "latest_file_id": 1250,
+      "latest_version": "1.7.1",
+      "latest_file_id": 1281,
       "latest_file_name": "Longer Days",
-      "uploaded_unix": 1784336771,
+      "uploaded_unix": 1789284669,
       "status": "ok"
     },
     {
@@ -288,10 +288,10 @@
       "plugin_guid": "p1xel8ted.gyk.queueeverything",
       "nexus_mod_id": 57,
       "nexus_url": "https://www.nexusmods.com/graveyardkeeper/mods/57",
-      "latest_version": "2.2.0",
-      "latest_file_id": 1253,
+      "latest_version": "2.2.1",
+      "latest_file_id": 1280,
       "latest_file_name": "Queue Everything",
-      "uploaded_unix": 1784340499,
+      "uploaded_unix": 1789284628,
       "status": "ok"
     },
     {
@@ -308,10 +308,10 @@
       "plugin_guid": "p1xel8ted.gyk.restinpatches",
       "nexus_mod_id": 125,
       "nexus_url": "https://www.nexusmods.com/graveyardkeeper/mods/125",
-      "latest_version": "0.1.5",
-      "latest_file_id": 1230,
+      "latest_version": "0.1.6",
+      "latest_file_id": 1283,
       "latest_file_name": "Rest In Patches",
-      "uploaded_unix": 1781931533,
+      "uploaded_unix": 1789284757,
       "status": "ok"
     },
     {
@@ -348,10 +348,10 @@
       "plugin_guid": "p1xel8ted.gyk.thoughtfulreminders",
       "nexus_mod_id": 52,
       "nexus_url": "https://www.nexusmods.com/graveyardkeeper/mods/52",
-      "latest_version": "2.2.14",
-      "latest_file_id": 1193,
+      "latest_version": "2.3.0",
+      "latest_file_id": 1282,
       "latest_file_name": "Thoughtful Reminders",
-      "uploaded_unix": 1779190910,
+      "uploaded_unix": 1789284718,
       "status": "ok"
     },
     {
@@ -368,20 +368,20 @@
       "plugin_guid": "p1xel8ted.gyk.wheresmapoints",
       "nexus_mod_id": 71,
       "nexus_url": "https://www.nexusmods.com/graveyardkeeper/mods/71",
-      "latest_version": "0.3.6",
-      "latest_file_id": 1195,
+      "latest_version": "0.3.7",
+      "latest_file_id": 1278,
       "latest_file_name": "Wheres Ma Points",
-      "uploaded_unix": 1779190940,
+      "uploaded_unix": 1789284545,
       "status": "ok"
     },
     {
       "plugin_guid": "p1xel8ted.gyk.wheresmastorage",
       "nexus_mod_id": 62,
       "nexus_url": "https://www.nexusmods.com/graveyardkeeper/mods/62",
-      "latest_version": "2.2.0",
-      "latest_file_id": 1231,
+      "latest_version": "2.2.1",
+      "latest_file_id": 1279,
       "latest_file_name": "Where's Ma Storage",
-      "uploaded_unix": 1781931562,
+      "uploaded_unix": 1789284589,
       "status": "ok"
     },
     {
