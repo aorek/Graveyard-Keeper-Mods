@@ -25,59 +25,76 @@ public static class Patches
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         var time = AccessTools.Property(typeof(Time), nameof(Time.deltaTime)).GetGetMethod();
+        var replaced = 0;
 
         foreach (var instruction in instructions)
         {
             if (instruction.opcode == OpCodes.Call && instruction.OperandIs(time))
             {
                 instruction.operand = AccessTools.Method(typeof(Patches), nameof(GetTime));
+                replaced++;
             }
             yield return instruction;
         }
+
+        WarnIfNoMatch(replaced, $"{nameof(EnvironmentEngine)}.{nameof(EnvironmentEngine.Update)}", "call Time.get_deltaTime");
     }
 
     // Buffs time their length and on-screen timer off a hard-coded 450-second day, so a longer
     // day makes a debuff last longer while its damage keeps ticking in real seconds (a "1 minute"
     // poison can triple and kill). Hand back the mod's day length so buffs keep their normal
-    // wall-clock duration at any setting. One per IL type the game loads the 450 constant as.
-    public static double DayLengthSecondsDouble()
+    // wall-clock duration at any setting. The game loads that 450 as a float in both methods.
+    public static float DayLengthSecondsFloat()
     {
         return Plugin.Seconds;
     }
 
-    public static float DayLengthSecondsFloat()
+    // A transpiler that matches nothing still hands back valid IL, so a dead patch looks healthy.
+    // Another mod may have changed the method first, so this is a warning, not a broken install.
+    private static void WarnIfNoMatch(int replaced, string method, string pattern)
     {
-        return Plugin.Seconds;
+        if (replaced > 0) return;
+        Plugin.Log.LogWarning($"[LongerDays] Nothing to patch in {method}: expected {pattern}. That part of the mod won't take effect.");
     }
 
     [HarmonyTranspiler]
     [HarmonyPatch(typeof(BuffsLogics), nameof(BuffsLogics.AddBuff))]
     private static IEnumerable<CodeInstruction> AddBuffTranspiler(IEnumerable<CodeInstruction> instructions)
     {
-        foreach (var instruction in instructions)
-        {
-            if (instruction.opcode == OpCodes.Ldc_R8 && instruction.operand is double d && d == 450.0)
-            {
-                instruction.opcode = OpCodes.Call;
-                instruction.operand = AccessTools.Method(typeof(Patches), nameof(DayLengthSecondsDouble));
-            }
-            yield return instruction;
-        }
-    }
+        var replaced = 0;
 
-    [HarmonyTranspiler]
-    [HarmonyPatch(typeof(PlayerBuff), nameof(PlayerBuff.GetTimerText))]
-    private static IEnumerable<CodeInstruction> GetTimerTextTranspiler(IEnumerable<CodeInstruction> instructions)
-    {
         foreach (var instruction in instructions)
         {
             if (instruction.opcode == OpCodes.Ldc_R4 && instruction.operand is float f && f == 450f)
             {
                 instruction.opcode = OpCodes.Call;
                 instruction.operand = AccessTools.Method(typeof(Patches), nameof(DayLengthSecondsFloat));
+                replaced++;
             }
             yield return instruction;
         }
+
+        WarnIfNoMatch(replaced, $"{nameof(BuffsLogics)}.{nameof(BuffsLogics.AddBuff)}", "ldc.r4 450");
+    }
+
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(PlayerBuff), nameof(PlayerBuff.GetTimerText))]
+    private static IEnumerable<CodeInstruction> GetTimerTextTranspiler(IEnumerable<CodeInstruction> instructions)
+    {
+        var replaced = 0;
+
+        foreach (var instruction in instructions)
+        {
+            if (instruction.opcode == OpCodes.Ldc_R4 && instruction.operand is float f && f == 450f)
+            {
+                instruction.opcode = OpCodes.Call;
+                instruction.operand = AccessTools.Method(typeof(Patches), nameof(DayLengthSecondsFloat));
+                replaced++;
+            }
+            yield return instruction;
+        }
+
+        WarnIfNoMatch(replaced, $"{nameof(PlayerBuff)}.{nameof(PlayerBuff.GetTimerText)}", "ldc.r4 450");
     }
 
     [HarmonyPostfix]
